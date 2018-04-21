@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Zadanie 4</title>
+</h:head>
+<h:body>
+    <h:form>
+        Ile jesteś w stanie przeznaczyc miesięcznie na zakup ubrania?
+        <h:selectOneMenu value="#{ankieta.pytanie1}">
+            <f:selectItems value="#{ankieta.pytanieLista1}"/>
+        </h:selectOneMenu><br/>
+        Jak często dokonujesz zakupu ubrania?
+        <h:selectOneMenu value="#{ankieta.pytanie2}">
+            <f:selectItems value="#{ankieta.pytanieLista2}"/>
+        </h:selectOneMenu><br/>
+        W jakich kolorach preferujesz ubrania?
+        <h:selectOneMenu value="#{ankieta.pytanie3}">
+            <f:selectItems value="#{ankieta.pytanieLista3}"/>
+        </h:selectOneMenu><br/>
+        Jakiego rodzaju ubrania najchętniej kupujesz?
+        <h:selectManyCheckbox value="#{ankieta.pytanie4}" rendered="#{ankieta.plec.equals('Kobieta')}">
+            <f:selectItems value="#{ankieta.pytanieLista4K}"/>
+        </h:selectManyCheckbox>
+        <h:selectManyCheckbox value="#{ankieta.pytanie4}" rendered="#{ankieta.plec.equals('Mężczyzna')}">
+            <f:selectItems value="#{ankieta.pytanieLista4M}"/>
+        </h:selectManyCheckbox>
+        <h:outputText value="&lt;br/&gt;Kiedy ostatnio robiłeś u nas zakupy:" rendered="#{ankieta.plec.equals('Mężczyzna')}" escape="false"/>
+        <h:outputText value="&lt;br/&gt;Kiedy ostatnio robiłaś u nas zakupy:" rendered="#{ankieta.plec.equals('Kobieta')}" escape="false"/>
+        <h:selectOneMenu value="#{ankieta.pytanie5}">
+            <f:selectItems value="#{ankieta.pytanieLista5}"/>
+        </h:selectOneMenu><br/>
+        <h:outputText value="&lt;br/&gt;Czy jesteś zadowolony z zakupu:" rendered="#{ankieta.plec.equals('Mężczyzna')}" escape="false"/>
+        <h:outputText value="&lt;br/&gt;Czy jesteś zadowolona z zakupu:" rendered="#{ankieta.plec.equals('Kobieta')}" escape="false"/>
+        <h:selectOneMenu value="#{ankieta.pytanie6}">
+            <f:selectItems value="#{ankieta.pytanieLista6}"/>
+        </h:selectOneMenu><br/>
+        <h:outputText value="&lt;br/&gt;Czy jesteś zadowolony z naszych pracowników?" rendered="#{ankieta.plec.equals('Mężczyzna')}" escape="false"/>
+        <h:outputText value="&lt;br/&gt;Czy jesteś zadowolona z naszych pracowników?" rendered="#{ankieta.plec.equals('Kobieta')}" escape="false"/>
+        <h:selectOneMenu value="#{ankieta.pytanie7}">
+            <f:selectItems value="#{ankieta.pytanieLista7}"/>
+        </h:selectOneMenu><br/>
+        Inne uwagi:
+        <h:inputTextarea rows="5" value="#{ankieta.uwagi}"/>
+        <h:commandButton value = "Submit" action = "result" />
+    </h:form>
+</h:body>
+</html>

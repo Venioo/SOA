@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Zadanie 3</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:selectOneMenu id="make" value="#{carChoice.make}">
+            <f:selectItem itemValue="#{null}"
+                          itemLabel="-- Wybierz marke --" noSelectionOption="true"/>
+            <f:selectItems value="#{carChoice.makeList}"/>
+            <f:ajax event="change" execute="make" render="model"/>
+            <f:ajax event="change" listener="#{carChoice.validateForm}" execute="make" render="button"/>
+        </h:selectOneMenu>
+        <h:selectOneMenu id="model" value="#{carChoice.model}">
+            <f:selectItem itemValue="#{null}"
+                          itemLabel="-- Wybierz model --" noSelectionOption="true"/>
+            <f:selectItems value="#{carChoice.modelList}"/>
+            <f:ajax event="change" listener="#{carChoice.validateForm}" execute="model" render="button"/>
+        </h:selectOneMenu>
+        <h:selectOneMenu id="engine" value="#{carChoice.engine}">
+            <f:selectItem itemValue="#{null}"
+                          itemLabel="-- Wybierz silnik --" noSelectionOption="true"/>
+            <f:selectItems value="#{carChoice.engineList}"/>
+            <f:ajax event="change" listener="#{carChoice.validateForm}" execute="engine" render="button"/>
+        </h:selectOneMenu><br/>
+        Minimalna cena:
+        <h:inputText id="minPrice" value="#{carChoice.minPrice}">
+            <f:ajax event="change" listener="#{carChoice.validateForm}" execute="minPrice" render="button"/>
+        </h:inputText><br/>
+        Maksymalna cena:
+        <h:inputText id="maxPrice" value="#{carChoice.maxPrice}">
+            <f:ajax event="change" listener="#{carChoice.validateForm}" execute="maxPrice" render="button"/>
+        </h:inputText><br/>
+        Imie i nazwisko:
+        <h:inputText id="personalData" value="#{carChoice.personalData}">
+            <f:ajax event="change" listener="#{carChoice.validateForm}" execute="personalData" render="button"/>
+        </h:inputText><br/>
+        Numer telefonu:
+        <h:inputText id="telephoneNumber" value="#{carChoice.telephoneNumber}">
+            <f:ajax event="change" listener="#{carChoice.validateForm}" execute="telephoneNumber" render="button"/>
+        </h:inputText><br/>
+        <h:commandButton id="button" value="OK" disabled="#{!carChoice.formValidation}">
+            <f:ajax event="click" render="matchingCars" listener="#{carChoice.findMatchingCars}"/>
+        </h:commandButton>
+        <h:commandButton id="clear" value="Wyczyść" action="#{carChoice.clearForm}"/>
+    </h:form>
+
+    <h:dataTable id="matchingCars" value="#{carChoice.matchingCars}" var="car">
+        <h:column>
+            <ul>
+                Marka: #{car.make}
+                Model: #{car.model}
+                Cena: #{car.price}
+                Silnik: #{car.engine}
+            </ul>
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>

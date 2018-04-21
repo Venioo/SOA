@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Zadanie 4</title>
+</h:head>
+<h:body>
+    <h:form>
+        Płeć:
+        <h:selectOneMenu value="#{ankieta.plec}">
+            <f:selectItem itemValue="#{null}"
+                          itemLabel="-- Płeć --" noSelectionOption="true"/>
+            <f:selectItems value="#{ankieta.plecLista}"/>
+            <f:ajax event="change" execute="@this" render="@form"/>
+        </h:selectOneMenu><br/>
+        Imie:
+        <h:inputText value="#{ankieta.imie}" required="true"/><br/>
+        Wiek:
+        <h:inputText value="#{ankieta.wiek}" required="true">
+            <f:validateLongRange minimum="10" maximum="100"/>
+        </h:inputText><br/>
+        E-mail:
+        <h:inputText value="#{ankieta.email}" required="true">
+            <f:validator validatorId="zadanie4.MailValidator"/></h:inputText><br/>
+        Wykształcenie:
+        <h:selectOneMenu value="#{ankieta.wyksztalcenie}">
+            <f:selectItems value="#{ankieta.wyksztalcenieLista}"/>
+        </h:selectOneMenu><br/>
+        Wzrost[cm]:
+        <h:inputText value="#{ankieta.wzrost}">
+            <f:validateLongRange minimum="150" maximum="185" disabled="#{ankieta.plec.equals('Mężczyzna')}"/>
+            <f:validateLongRange minimum="165" maximum="200" disabled="#{ankieta.plec.equals('Kobieta')}"/>
+        </h:inputText>
+        <h:outputText value="&lt;br/&gt;Obwód biustu:" rendered="#{ankieta.plec.equals('Kobieta')}" escape="false"/>
+        <h:inputText value="#{ankieta.biust}" rendered="#{ankieta.plec.equals('Kobieta')}"/>
+        <h:outputText value="&lt;br/&gt;Wielkość miseczki:" rendered="#{ankieta.plec.equals('Kobieta')}"
+                      escape="false"/>
+        <h:inputText value="#{ankieta.miseczka}" rendered="#{ankieta.plec.equals('Kobieta')}"/>
+        <h:outputText value="&lt;br/&gt;Talia:" rendered="#{ankieta.plec.equals('Kobieta')}" escape="false"/>
+        <h:inputText value="#{ankieta.talia}" rendered="#{ankieta.plec.equals('Kobieta')}"/>
+        <h:outputText value="&lt;br/&gt;Biodra:" rendered="#{ankieta.plec.equals('Kobieta')}" escape="false"/>
+        <h:inputText value="#{ankieta.biodra}" rendered="#{ankieta.plec.equals('Kobieta')}"/>
+        <h:outputText value="&lt;br/&gt;Długość nogi:" rendered="#{ankieta.plec.equals('Kobieta')}" escape="false"/>
+        <h:inputText value="#{ankieta.noga}" rendered="#{ankieta.plec.equals('Kobieta')}"/>
+
+        <h:outputText value="&lt;br/&gt;Klatka:" rendered="#{ankieta.plec.equals('Mężczyzna')}" escape="false"/>
+        <h:inputText value="#{ankieta.klatka}" rendered="#{ankieta.plec.equals('Mężczyzna')}"/>
+        <h:outputText value="&lt;br/&gt;Pas:" rendered="#{ankieta.plec.equals('Mężczyzna')}" escape="false"/>
+        <h:inputText value="#{ankieta.pas}" rendered="#{ankieta.plec.equals('Mężczyzna')}"/>
+        <h:outputText value="&lt;br/&gt;Długość nogi:" rendered="#{ankieta.plec.equals('Mężczyzna')}" escape="false"/>
+        <h:inputText value="#{ankieta.noga}" rendered="#{ankieta.plec.equals('Mężczyzna')}"/><br/>
+
+        <h:commandButton value="OK" action="form2.xhtml">
+        </h:commandButton>
+    </h:form>
+</h:body>
+</html>
