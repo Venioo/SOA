@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://venio.com/" xmlns:tns="http://venio.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="policz" type="tns:policz"/>
+
+  <xs:element name="policzResponse" type="tns:policzResponse"/>
+
+  <xs:complexType name="policz">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="policzResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
