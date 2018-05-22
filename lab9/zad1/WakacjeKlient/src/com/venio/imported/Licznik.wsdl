@@ -1,0 +1,54 @@
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://venio.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="LicznikService" targetNamespace="http://venio.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://venio.com/" elementFormDefault="unqualified" targetNamespace="http://venio.com/" version="1.0">
+
+  <xs:element name="odlicz" type="tns:odlicz"></xs:element>
+
+  <xs:element name="odliczResponse" type="tns:odliczResponse"></xs:element>
+
+  <xs:complexType name="odlicz">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="odliczResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="odliczResponse">
+    <wsdl:part element="tns:odliczResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="odlicz">
+    <wsdl:part element="tns:odlicz" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Licznik">
+    <wsdl:operation name="odlicz">
+      <wsdl:input message="tns:odlicz" name="odlicz">
+    </wsdl:input>
+      <wsdl:output message="tns:odliczResponse" name="odliczResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LicznikServiceSoapBinding" type="tns:Licznik">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="odlicz">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="odlicz">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="odliczResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LicznikService">
+    <wsdl:port binding="tns:LicznikServiceSoapBinding" name="LicznikPort">
+      <soap:address location="http://localhost:8080/WakacjeWebService_war_exploded/Licznik"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
