@@ -23,6 +23,13 @@ public class FilmRest {
     }
 
     @GET
+    @Path("/opis")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response getInfo() {
+        return Response.status(Response.Status.OK).entity(restURI).build();
+    }
+
+    @GET
     @Path("/filmy/filtr")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getFilmFiltr(@QueryParam("tytul") String tytul) {
